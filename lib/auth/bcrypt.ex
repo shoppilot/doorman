@@ -31,7 +31,6 @@ defmodule Doorman.Auth.Bcrypt do
   User.authenticate(user, "password")
   ```
   """
-  alias Comeonin.Bcrypt
   alias Ecto.Changeset
 
   @doc """
@@ -42,7 +41,7 @@ defmodule Doorman.Auth.Bcrypt do
     password = Changeset.get_change(changeset, :password)
 
     if password do
-      hashed_password = Bcrypt.hashpwsalt(password)
+      hashed_password = Bcrypt.hash_pwd_salt(password)
       changeset
       |> Changeset.put_change(:hashed_password, hashed_password)
     else
@@ -54,14 +53,14 @@ defmodule Doorman.Auth.Bcrypt do
   Compares the given `password` against the given `user`'ss password.
   """
   def authenticate(user, password) do
-    Bcrypt.checkpw(password, user.hashed_password)
+    Bcrypt.verify_pass(password, user.hashed_password)
   end
 
   @doc """
   Simulates password check to help prevent timing attacks. Delegates to
-  `Comeonin.Bcrypt.dummy_checkpw/0`.
+  `Comeonin.Bcrypt.no_user_verify/0`.
   """
-  def dummy_checkpw() do
-    Bcrypt.dummy_checkpw()
+  def no_user_verify() do
+    Bcrypt.no_user_verify()
   end
 end

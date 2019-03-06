@@ -22,7 +22,7 @@ defmodule Doorman.Mixfile do
 
   defp deps do
     [
-      {:comeonin, "~> 2.4"},
+      {:bcrypt_elixir, "~> 2.0"},
       {:earmark, "~> 1.1", only: :dev},
       {:ecto, "~> 2.0", only: :test},
       {:ex_doc, "~> 0.19", only: :dev},

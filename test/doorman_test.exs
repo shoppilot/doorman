@@ -9,13 +9,13 @@ defmodule DoormanTest do
     def get_by(OtherFake, email: "brandy@dirt.com") do
       %{
         email: "brandy@dirt.com",
-        hashed_password: Comeonin.Bcrypt.hashpwsalt("password")
+        hashed_password: Bcrypt.hash_pwd_salt("password")
       }
     end
     def get_by(Fake, email: "joe@dirt.com") do
       %{
         email: "joe@dirt.com",
-        hashed_password: Comeonin.Bcrypt.hashpwsalt("password")
+        hashed_password: Bcrypt.hash_pwd_salt("password")
       }
     end
     def get_by(Fake, email: _email), do: nil
@@ -24,7 +24,7 @@ defmodule DoormanTest do
       if id == 1 do
         %{
           email: "joe@dirt.com",
-          hashed_password: Comeonin.Bcypt.hashpwsalt("password")
+          hashed_password: Bcypt.hash_pwd_salt("password")
         }
       else
         nil

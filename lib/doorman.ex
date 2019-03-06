@@ -29,7 +29,7 @@ defmodule Doorman do
       user && authenticate_user(user, password) -> user
       user -> nil
       true ->
-        auth_module().dummy_checkpw()
+        auth_module().no_user_verify()
         nil
     end
   end
